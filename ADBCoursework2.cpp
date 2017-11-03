@@ -32,8 +32,9 @@ std::shared_ptr<Reviews const> getReviews() {
 	using namespace std;
 	ifstream reviewStream;
 	reviewStream.open(getExecutablePath() + "/review.csv");
-	if(!reviewStream.is_open()){
-		std::cout << "could not open review.csv, was expecting it in directory " << getExecutablePath() << std::endl;
+	if(!reviewStream.is_open()) {
+		std::cout << "could not open review.csv, was expecting it in directory " << getExecutablePath()
+							<< std::endl;
 		exit(1);
 	}
 	auto r = make_unique<Reviews>();
@@ -51,8 +52,9 @@ std::shared_ptr<Businesses const> getBusinesses() {
 	using namespace std;
 	ifstream businessStream;
 	businessStream.open(getExecutablePath() + "/business.csv");
-	if(!businessStream.is_open()){
-		std::cout << "could not open business.csv, was expecting it in directory " << getExecutablePath() << std::endl;
+	if(!businessStream.is_open()) {
+		std::cout << "could not open business.csv, was expecting it in directory "
+							<< getExecutablePath() << std::endl;
 		exit(1);
 	}
 	auto r = make_unique<Businesses>();
@@ -69,8 +71,8 @@ std::shared_ptr<Businesses const> getBusinesses() {
 }
 
 std::vector<size_t> performQueryUsingHashJoin(std::shared_ptr<Reviews const> r,
-																								std::shared_ptr<Businesses const> b, float latMin,
-																								float latMax, float longMin, float longMax) {
+																							std::shared_ptr<Businesses const> b, float latMin,
+																							float latMax, float longMin, float longMax) {
 	using namespace std;
 	//////////////////// Build Side ////////////////////
 
@@ -120,9 +122,9 @@ std::vector<size_t> performQueryUsingHashJoin(std::shared_ptr<Reviews const> r,
 ////////////////////////////////////////
 
 std::vector<size_t> performQueryUsingNestedLoopJoin(std::shared_ptr<Reviews const> r,
-																											std::shared_ptr<Businesses const> b,
-																											float latMin, float latMax, float longMin,
-																											float longMax) {
+																										std::shared_ptr<Businesses const> b,
+																										float latMin, float latMax, float longMin,
+																										float longMax) {
 
 	using namespace std;
 	auto selectStart = chrono::high_resolution_clock::now();
@@ -149,7 +151,7 @@ void printGroups(std::vector<size_t> groups) {
 	auto outputCount = 0;
 	for(size_t i = 0; i < groups.size(); i++)
 		if(groups[i])
-			cout << (outputCount++ ? ", ":"") << i << ": " << groups[i];
+			cout << (outputCount++ ? ", " : "") << i << ": " << groups[i];
 	cout << std::endl;
 }
 

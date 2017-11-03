@@ -39,7 +39,6 @@ std::vector<std::string> getQualifyingBusinessesIDsVector(Businesses const& b, f
 																													float longMax);
 
 std::vector<unsigned long>
-performNestedLoopJoinAndAggregation(Reviews const& r,
-																		std::vector<std::string> const& qualies);
+performNestedLoopJoinAndAggregation(Reviews const& r, std::vector<std::string> const& qualies);
 
 #endif /* IMPLEMENTATION_H */

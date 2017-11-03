@@ -11,8 +11,8 @@ std::vector<std::string> getQualifyingBusinessesIDsVector(Businesses const& b, f
 	throw std::logic_error("unimplemented");
 }
 
-std::vector<unsigned long> performNestedLoopJoinAndAggregation(Reviews const& r,
-																												std::vector<std::string> const& qualies) {
+std::vector<unsigned long>
+performNestedLoopJoinAndAggregation(Reviews const& r, std::vector<std::string> const& qualies) {
 	std::cout << "function performNestedLoopJoinAndAggregation not implemented" << std::endl;
 	throw std::logic_error("unimplemented");
 }
@@ -29,6 +29,6 @@ std::unordered_set<std::string> getQualifyingBusinessesIDs(Businesses const& b, 
 std::vector<unsigned long>
 aggregateStarsOfQualifyingBusinesses(Reviews const& r,
 																		 std::unordered_set<std::string> const& qualifyingBusinesses) {
-		std::cout << "function aggregateStarsOfQualifyingBusinesses not implemented" << std::endl;
+	std::cout << "function aggregateStarsOfQualifyingBusinesses not implemented" << std::endl;
 	throw std::logic_error("unimplemented");
 }
