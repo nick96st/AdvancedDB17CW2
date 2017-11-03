@@ -32,6 +32,10 @@ std::shared_ptr<Reviews const> getReviews() {
 	using namespace std;
 	ifstream reviewStream;
 	reviewStream.open(getExecutablePath() + "/review.csv");
+	if(!reviewStream.is_open()){
+		std::cout << "could not open review.csv, was expecting it in directory " << getExecutablePath() << std::endl;
+		exit(1);
+	}
 	auto r = make_unique<Reviews>();
 	while(reviewStream.good()) {
 		string businessID, stars;
@@ -47,6 +51,10 @@ std::shared_ptr<Businesses const> getBusinesses() {
 	using namespace std;
 	ifstream businessStream;
 	businessStream.open(getExecutablePath() + "/business.csv");
+	if(!businessStream.is_open()){
+		std::cout << "could not open business.csv, was expecting it in directory " << getExecutablePath() << std::endl;
+		exit(1);
+	}
 	auto r = make_unique<Businesses>();
 	while(businessStream.good()) {
 		string businessID, latitude, longitude;
