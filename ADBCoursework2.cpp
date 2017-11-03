@@ -146,13 +146,27 @@ std::vector<size_t> performQueryUsingNestedLoopJoin(std::shared_ptr<Reviews cons
 	return groups;
 }
 
-void printGroups(std::vector<size_t> groups) {
+std::vector<size_t> printGroups(std::vector<size_t> groups) {
 	using namespace std;
 	auto outputCount = 0;
 	for(size_t i = 0; i < groups.size(); i++)
 		if(groups[i])
 			cout << (outputCount++ ? ", " : "") << i << ": " << groups[i];
-	cout << std::endl;
+	return groups;
+}
+
+void checkResults(std::vector<size_t> groups, int queryNumber) {
+	auto failure = false;
+	std::vector<unsigned long> fixture = std::vector<std::vector<unsigned long>>{
+			{0, 137039, 111817, 174317, 337639, 410518},
+			{0, 28781, 19532, 27541, 56435, 83655},
+			{0, 95, 38, 59, 124, 236},
+			{0, 122, 84, 108, 244, 551},
+	}[queryNumber];
+	for(size_t i = 0; i < 6; i++) {
+		failure |= (groups[i] != fixture[i]);
+	}
+	std::cout << "...: " << (failure ? "failed" : "passed") << std::endl;
 }
 
 int main(int, char**) {
@@ -161,9 +175,11 @@ int main(int, char**) {
 	auto r = getReviews();
 	auto b = getBusinesses();
 
-	printGroups(performQueryUsingHashJoin(r, b, 30.0, 45.7, -100.0, -1.0));
-	printGroups(performQueryUsingHashJoin(r, b, 4.0, 40., -90.0, -40.0));
-	printGroups(performQueryUsingHashJoin(r, b, 42.0, 43.0, -89.45, -89.25));
-	printGroups(performQueryUsingNestedLoopJoin(r, b, 42.0, 43.0, -89.45, -89.25));
+	checkResults(printGroups(performQueryUsingHashJoin(r, b, 30.0, 45.7, -100.0, -1.0)), 0);
+	checkResults(printGroups(performQueryUsingHashJoin(r, b, 4.0, 40., -90.0, -40.0)), 1);
+	checkResults(printGroups(performQueryUsingHashJoin(r, b, 42.0, 43.0, -89.45, -89.25)), 2);
+	checkResults(printGroups(performQueryUsingHashJoin(r, b, 42.0, 43.0, -89.65, -89.45)), 3);
+	checkResults(printGroups(performQueryUsingNestedLoopJoin(r, b, 42.0, 43.0, -89.45, -89.25)), 2);
+	checkResults(printGroups(performQueryUsingNestedLoopJoin(r, b, 42.0, 43.0, -89.65, -89.45)), 3);
 	return 0;
 }
