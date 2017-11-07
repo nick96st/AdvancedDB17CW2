@@ -71,8 +71,8 @@ std::shared_ptr<Businesses const> getBusinesses() {
 }
 
 std::vector<size_t> performQueryUsingHashJoin(std::shared_ptr<Reviews const> r,
-																							std::shared_ptr<Businesses const> b, float latMin,
-																							float latMax, float longMin, float longMax) {
+                                            std::shared_ptr<Businesses const> b, float latMin,
+                                            float latMax, float longMin, float longMax) {
 	using namespace std;
 	//////////////////// Build Side ////////////////////
 
@@ -122,9 +122,9 @@ std::vector<size_t> performQueryUsingHashJoin(std::shared_ptr<Reviews const> r,
 ////////////////////////////////////////
 
 std::vector<size_t> performQueryUsingNestedLoopJoin(std::shared_ptr<Reviews const> r,
-																										std::shared_ptr<Businesses const> b,
-																										float latMin, float latMax, float longMin,
-																										float longMax) {
+                                                                    std::shared_ptr<Businesses const> b,
+                                                                    float latMin, float latMax, float longMin,
+                                                                    float longMax) {
 
 	using namespace std;
 	auto selectStart = chrono::high_resolution_clock::now();
@@ -139,8 +139,8 @@ std::vector<size_t> performQueryUsingNestedLoopJoin(std::shared_ptr<Reviews cons
 	auto groups = performNestedLoopJoinAndAggregation(*r, qualies);
 
 	std::cout << "nested loops join: " << (chrono::duration_cast<chrono::milliseconds>(
-																						 chrono::high_resolution_clock::now() - joinStart)
-																						 .count())
+                                             chrono::high_resolution_clock::now() - joinStart)
+                                             .count())
 						<< std::endl;
 
 	return groups;
