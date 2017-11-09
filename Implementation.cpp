@@ -62,8 +62,19 @@ std::unordered_set<std::string> getQualifyingBusinessesIDs(Businesses const& b, 
                                                          float longMax) {
 	// This function needs to find all businesses that have within the
 	// specified latitude/longitude range and store their ids in the result set
-	std::cout << "function getQualifyingBusinessesIDs not implemented" << std::endl;
-	throw std::logic_error("unimplemented");
+    std::unordered_set<std::string>* qualified_ids = new std::unordered_set<std::string>();
+    std::vector<double>::const_iterator iter_lat = b.latitudes.begin(), iter_long = b.longitudes.begin();
+    for (auto& business : b.ids) {
+        if(*iter_lat >= latMin && *iter_lat <= latMax && *iter_long >= longMin && *iter_long <= longMax) {
+            qualified_ids->insert(business);
+        }
+        // iterators.next()
+        iter_lat = std::next(iter_lat);
+        iter_long = std::next(iter_long);
+    }
+//	std::cout << "function getQualifyingBusinessesIDs not implemented" << std::endl;
+//	throw std::logic_error("unimplemented");
+    return *qualified_ids;
 }
 
 std::vector<unsigned long>
@@ -72,9 +83,25 @@ aggregateStarsOfQualifyingBusinesses(Reviews const& r,
 	// The second parameter of this function is the set of qualifying
 	// business ids you have created in the first function
 
+
+    std::vector<unsigned long>* counted_stars = new std::vector<unsigned long>();
+    // nullify initial count
+    for(int i=0;i<=5;i++) { (*counted_stars).push_back(0);}
+    const unsigned long N = r.business_ids.size();
+    const unsigned long M = qualifyingBusinesses.size();
+
+    for(int i = 0; i < N; i++) {
+        std::string curr_id = r.business_ids[i];
+        if(qualifyingBusinesses.find(curr_id) != qualifyingBusinesses.end()){
+            double stars = r.stars[i];
+            (*counted_stars)[stars]++;
+        }
+    }
+
+    return *counted_stars;
 	// This function needs to find all reviews that have business_ids in
 	// the qualifyingBusinessesIDs vector and build a histogram over their stars
 	// The return value is that histogram
-	std::cout << "function aggregateStarsOfQualifyingBusinesses not implemented" << std::endl;
-	throw std::logic_error("unimplemented");
+//	std::cout << "function aggregateStarsOfQualifyingBusinesses not implemented" << std::endl;
+//	throw std::logic_error("unimplemented");
 }
