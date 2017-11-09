@@ -14,7 +14,6 @@ std::vector<std::string> getQualifyingBusinessesIDsVector(Businesses const& b, f
     for (auto& business : b.ids) {
         if(*iter_lat >= latMin && *iter_lat <= latMax && *iter_long >= longMin && *iter_long <= longMax) {
             filtered_ids->push_back(business);
-            std::cout<<"on business id:"<<business<<endl;
         }
         // iterators.next()
         iter_lat = std::next(iter_lat);
