@@ -41,7 +41,7 @@ performNestedLoopJoinAndAggregation(Reviews const& r, std::vector<std::string> c
     for (int i = 0; i < N; i++) {
         std::string curr_id = r.business_ids[i];
         double stars = r.stars[i];
-        for(int j; j< M;j++) {
+        for(int j = 0; j< M;j++) {
             if(curr_id == qualifyingBusinessesIDs[j]) {
                 std::cout<<"id:"<<curr_id<<endl;
                 (*counted_stars)[stars]++;
