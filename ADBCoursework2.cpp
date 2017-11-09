@@ -134,15 +134,14 @@ std::vector<size_t> performQueryUsingNestedLoopJoin(std::shared_ptr<Reviews cons
 																	.count())
 						<< std::endl;
 
-    std::cout<<endl<<"number of ids qualified:"<<qualies.size()<<endl;
-//
+//    std::cout<<endl<<"number of ids qualified:"<<qualies.size()<<endl;
 	auto joinStart = chrono::high_resolution_clock::now();
 
 	auto groups = performNestedLoopJoinAndAggregation(*r, qualies);
 
-    for(int i=0;i<=5;i++) {
-        std::cout<<groups[i]<<endl;
-    }
+//    for(int i=0;i<=5;i++) {
+//        std::cout<<groups[i]<<endl;
+//    }
 
 	std::cout << "nested loops join: " << (chrono::duration_cast<chrono::milliseconds>(
                                              chrono::high_resolution_clock::now() - joinStart)
