@@ -17,8 +17,8 @@ std::vector<std::string> getQualifyingBusinessesIDsVector(Businesses const& b, f
             std::cout<<"on business id:"<<business<<endl;
         }
         // iterators.next()
-        std::next(iter_lat);
-        std::next(iter_long);
+        iter_lat = std::next(iter_lat);
+        iter_long = std::next(iter_long);
     }
 //
 //	std::cout << "function getQualifyingBusinessesIDsVector not implemented" << std::endl;
