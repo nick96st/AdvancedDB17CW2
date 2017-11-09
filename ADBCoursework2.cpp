@@ -134,7 +134,7 @@ std::vector<size_t> performQueryUsingNestedLoopJoin(std::shared_ptr<Reviews cons
 																	.count())
 						<< std::endl;
 
-    std::cout<<endl<<qualies.size()<<endl;
+    std::cout<<endl<<"number of ids qualified:"<<qualies.size()<<endl;
 //
 	auto joinStart = chrono::high_resolution_clock::now();
 
