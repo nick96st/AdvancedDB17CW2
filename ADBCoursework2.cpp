@@ -174,12 +174,11 @@ int main(int, char**) {
 
 	auto r = getReviews();
 	auto b = getBusinesses();
-//
 	checkResults(printGroups(performQueryUsingHashJoin(r, b, 30.0, 45.7, -100.0, -1.0)), 0);
 	checkResults(printGroups(performQueryUsingHashJoin(r, b, 4.0, 40., -90.0, -40.0)), 1);
 	checkResults(printGroups(performQueryUsingHashJoin(r, b, 42.0, 43.0, -89.45, -89.25)), 2);
 	checkResults(printGroups(performQueryUsingHashJoin(r, b, 42.0, 43.0, -89.65, -89.45)), 3);
-//	checkResults(printGroups(performQueryUsingNestedLoopJoin(r, b, 42.0, 43.0, -89.45, -89.25)), 2);
-//	checkResults(printGroups(performQueryUsingNestedLoopJoin(r, b, 42.0, 43.0, -89.65, -89.45)), 3);
+	checkResults(printGroups(performQueryUsingNestedLoopJoin(r, b, 42.0, 43.0, -89.45, -89.25)), 2);
+	checkResults(printGroups(performQueryUsingNestedLoopJoin(r, b, 42.0, 43.0, -89.65, -89.45)), 3);
 	return 0;
 }
