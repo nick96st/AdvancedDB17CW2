@@ -16,7 +16,7 @@ std::vector<std::string> getQualifyingBusinessesIDsVector(Businesses const& b, f
             filtered_ids->push_back(business);
         // iterators.next()
         std::next(iter_lat);
-        std::next(longMax);
+        std::next(iter_long);
     }
 //
 //	std::cout << "function getQualifyingBusinessesIDsVector not implemented" << std::endl;
